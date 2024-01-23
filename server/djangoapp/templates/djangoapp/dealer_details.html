@@ -50,7 +50,8 @@
         </div>
     </nav>
 
-    <div class="card-columns">
+    <h1 class="p-3">Reviews for {{ dealer.full_name }}</h1>
+    <div class="card-columns p-3">
         {% for review in reviews %}
         <div class="card">
             {% if review.sentiment == 'positive' %}
