@@ -40,6 +40,33 @@ class CarModel(models.Model):
         return self.name
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
+class CarDealer(models.Model):
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=50)
+    full_name = models.CharField(max_length=255)
+    id = models.AutoField(primary_key=True)
+    lat = models.DecimalField(max_digits=9, decimal_places=6)
+    long = models.DecimalField(max_digits=9, decimal_places=6)
+    short_name = models.CharField(max_length=100)
+    st = models.CharField(max_length=2)
+    zip = models.CharField(max_length=10)
 
+    def __str__(self):
+        return f"Dealer name: {self.full_name}"
 
 # <HINT> Create a plain Python class `DealerReview` to hold review data
+class DealerReview(models.Model):
+    dealership = models.CharField(max_length=150)
+    name = models.CharField(max_length=150)
+    purchase = models.DateField()
+    review = models.TextField()
+    purchase_date = models.DateField()
+    car_dealer = models.ForeignKey(CarDealer, on_delete=models.CASCADE)
+    car_make = models.CharField(max_length=150)
+    car_model = models.CharField(max_length=150)
+    car_year = models.IntegerField()
+    sentiment = models.CharField(max_length=50)
+    id = models.IntegerField(primary_key=True)
+
+    def __str__(self):
+        return self.name
